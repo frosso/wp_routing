@@ -4,17 +4,15 @@ class RouterResource {
 
     protected static $router = null;
 
-    function __construct( ) {
-
-        if ( is_admin( ) || $_SERVER['PHP_SELF'] == '/wp-login.php' ) {
-            return;
+    protected static $instance = null;
+    public static function getInstance( ) {
+        if ( self::$instance == null ) {
+            self::$instance = new RouterResource( );
         }
+        return self::$instance;
+    }
 
-        add_action( 'init', array(
-            $this,
-            'init_routes'
-        ) );
-
+    private function __construct( ) {
     }
 
     public static function add_route( $route, $callback, $name = null, $methods = 'GET|POST' ) {
