@@ -5,7 +5,7 @@ class RouterResource {
     protected static $router = null;
 
     protected static $instance = null;
-    public static function getInstance( ) {
+    public static function get_instance( ) {
         if ( self::$instance == null ) {
             self::$instance = new RouterResource( );
         }
