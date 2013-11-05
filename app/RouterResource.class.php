@@ -49,7 +49,7 @@ class RouterResource {
     }
 
     public static function generate( $name, array $params = array() ) {
-        return self::get_router( )->generate( );
+        return self::get_router( )->generate( $name, $params );
     }
 
 }
