@@ -12,10 +12,10 @@ class TemplateRedirectResource {
         $template = locate_template( $template );
 
         if ( $force_header ) {
-            add_filter( 'status_header', function( $status_header, $header, $text, $protocol ) use ( $force_header ) {
+            add_filter( 'status_header', create_function( '$status_header,$header,$text,$protocol', "
                 $text = get_status_header_desc( $force_header );
-                return "$protocol $force_header $text";
-            }, 10, 4 );
+                return \"$protocol $force_header $text\";
+            "), 10, 4 );
         }
 
         if ( $query ) {
