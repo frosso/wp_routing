@@ -1,0 +1,6 @@
+[submodule "app/AltoRouter"]
+	path = app/AltoRouter
+	url = https://github.com/dannyvankooten/AltoRouter.git
+[submodule "app/PHP-Router"]
+	path = app/PHP-Router
+	url = https://github.com/dannyvankooten/PHP-Router.git
