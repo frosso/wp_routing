@@ -4,9 +4,7 @@ class TemplateRedirectResource {
 
     public static function override_template( $template ) {
         if ( is_file( $template ) ) {
-            add_filter( 'template_include', function( $old_template ) use ( $template ) {
-                return $template;
-            } );
+            add_filter( 'template_include', create_function( '$old_template', "return '$template';" ) );
         }
     }
 
@@ -21,7 +19,7 @@ class TemplateRedirectResource {
         }
 
         if ( $query ) {
-            add_action( 'do_parse_request', function( ) use ( $query ) {
+            add_action( 'do_parse_request', create_function('', "
                 global $wp;
 
                 if ( is_callable( $query ) )
@@ -36,15 +34,15 @@ class TemplateRedirectResource {
                 // Could not interpret query. Let WP try.
 
                 return false;
-            } );
+            " ) );
         }
         if ( $template ) {
-            add_action( 'wp_loaded', function( ) use ( $template ) {
+            add_action( 'wp_loaded', create_function('', "
                 wp( );
                 do_action( 'template_redirect' );
                 load_template( $template );
                 die ;
-            } );
+            " ) );
         }
     }
 
