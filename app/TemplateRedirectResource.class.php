@@ -41,7 +41,7 @@ class TemplateRedirectResource {
                 wp( );
                 do_action( 'template_redirect' );
                 load_template( $template );
-                die ;
+                exit ;
             " ) );
         }
     }
