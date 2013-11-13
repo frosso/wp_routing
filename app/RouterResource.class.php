@@ -19,7 +19,7 @@ class RouterResource {
         self::get_router( )->map( $route, $callback, $methods, $name );
     }
 
-    public function init_routes( ) {
+    public static function init_routes( ) {
 
         $route_info = self::get_router( )->match( );
         if ( $route_info !== false ) {
